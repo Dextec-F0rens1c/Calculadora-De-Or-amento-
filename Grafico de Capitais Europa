@@ -1,0 +1,47 @@
+import streamlit as st
+import matplotlib.pyplot as plt
+
+# Conversões aproximadas
+euro_brl = 5.82
+rublo_brl = 0.07
+
+# Valores
+moedas = ["Euro", "Rublo"]
+valor_unitario = [euro_brl, rublo_brl]
+
+# Capital exemplo
+capital_100 = [euro_brl * 100, rublo_brl * 100]
+capital_1000 = [euro_brl * 1000, rublo_brl * 1000]
+
+st.title("Conversão Euro e Rublo para Real")
+
+st.write("Valores aproximados atuais em BRL")
+
+# Gráfico 1
+fig, ax = plt.subplots()
+
+ax.bar(moedas, valor_unitario)
+
+ax.set_title("Valor unitário em Real")
+ax.set_ylabel("BRL")
+
+st.pyplot(fig)
+
+# Gráfico 2
+fig2, ax2 = plt.subplots()
+
+x = range(len(moedas))
+
+ax2.bar(x, capital_100, width=0.4, label="100 unidades")
+ax2.bar([i + 0.4 for i in x], capital_1000, width=0.4, label="1000 unidades")
+
+ax2.set_xticks([i + 0.2 for i in x])
+ax2.set_xticklabels(moedas)
+
+ax2.set_title("Capital convertido em Real")
+ax2.set_ylabel("BRL")
+ax2.legend()
+
+st.pyplot(fig2)
+
+st.write("Euro possui maior valor de capital comparado ao Rublo.")
